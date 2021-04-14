@@ -10,7 +10,7 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 
 def InsertOrUpdate(mssv, name, lop, email):
-    conn = sqlite3.connect('E:\\diemdanh\\sv.db')
+    conn = sqlite3.connect('D:\\diemdanh\\sv.db')
     query = "SELECT * FROM sinhvien where MSSV="+str(mssv)
     curr = conn.execute(query)
     isRecordExit = 0
@@ -41,7 +41,7 @@ video = cv2.VideoCapture(0)
 smlNum = 0
 while True:
     ret, frame = video.read()
-    gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
     face_dec = dlib.get_frontal_face_detector()
     faces = face_dec(frame)
     left = 10
@@ -55,8 +55,7 @@ while True:
         x2 = face.right()
         y2 = face.bottom()
         cv2.rectangle(img = frame, pt1 =(x1, y1), pt2 =(x2, y2), color=(0, 255, 0), thickness =3)
-        frame_crop  = gray[y1-top:y1+(y1-y2)+bottom, x1-left:x1+(x2-x1)+right]
-        face_feature = predictor(gray, face)
+        face_feature = predictor(frame, face)
         for n in range(0, 68):
             x = face_feature.part(n).x
             y = face_feature.part(n).y
@@ -66,6 +65,7 @@ while True:
         if not os.path.exists('Dataset'):
             os.makedirs('Dataset')
         smlNum += 1
+        frame_crop  = gray[y1-top:y1+(y1-y2)+bottom, x1-left:x1+(x2-x1)+right]
         cv2.imwrite('Dataset/'+str(name)+'.'+str(mssv) +'.'+str(smlNum)+'.jpg', frame_crop)
     if ret:
         cv2.imshow("Webcam", frame)

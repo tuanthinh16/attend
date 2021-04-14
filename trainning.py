@@ -16,7 +16,6 @@ def getImageWithmssv(path):
     for imagePath in imagePaths:
         faceImg = Image.open(imagePath).convert('L')
         faceNP = np.array(faceImg, 'uint8')
-        
         print(faceNP)
         Id = int(imagePath.split('\\')[1].split('.')[1])
         faces.append(faceNP)
