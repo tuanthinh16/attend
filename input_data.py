@@ -10,7 +10,7 @@ recognizer = cv2.face.LBPHFaceRecognizer_create()
 
 
 def InsertOrUpdate(mssv, name, lop, email):
-    conn = sqlite3.connect('E:\\diemdanh\\sv.db')
+    conn = sqlite3.connect('E:\\github\\attend\\sv.db')
     query = "SELECT * FROM sinhvien where MSSV="+str(mssv)
     curr = conn.execute(query)
     isRecordExit = 0

@@ -23,7 +23,7 @@ recognizer.read('E:\\diemdanh\\recongniger\\trainningData.yml')
 
 
 def getProfile(mssv):
-    conn = sqlite3.connect('E:\\diemdanh\\sv.db')
+    conn = sqlite3.connect('E:\\github\\attend\\sv.db')
     query = "SELECT * FROM sinhvien WHERE MSSV="+str(mssv)
     curror = conn.execute(query)
     profile = None
@@ -89,7 +89,7 @@ while True:
                 check = True
                 cv2.putText(
                     frame, ""+str(profile[1])+","+str(profile[2]), (x+10, y+h+30), fontFace, 1, (0, 255, 0), 2)
-            conn = sqlite3.connect('E:\\diemdanh\\sv.db')
+            conn = sqlite3.connect('E:\\github\\attend\\sv.db')
             query = "SELECT * FROM diemdanh WHERe MSSV="+str(MSSV)
             curr = conn.execute(query)
             isRecordExit = 0
