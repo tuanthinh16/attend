@@ -30,7 +30,7 @@ def InsertOrUpdate(mssv, name, lop, email):
 
 # input data
 mssv = input("Nhap MSSV: ")
-name = input("Nhap Ho Ten: ")
+name = input("Nhap Ten: ")
 lop = '18ct3'
 email = 'hhhh'
 InsertOrUpdate(mssv, name, lop, email)

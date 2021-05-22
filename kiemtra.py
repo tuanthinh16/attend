@@ -16,7 +16,7 @@ detector = dlib.get_frontal_face_detector()
 now = datetime.datetime.now()
 
 face_cascade = cv2.CascadeClassifier(
-    cv2.data.haarcascades + "haarcascade_frontalface_default.xml")
+    cv2.data.haarcascades + "haarcascade_frontalface_alt2.xml")
 recognizer = cv2.face.LBPHFaceRecognizer_create()
 recognizer.read('recongniger\\trainningData.yml')
 
@@ -71,15 +71,26 @@ while True:
                 cv2.putText(frame, "Done !", (x, y+h-60),
                             fontFace, 1, (241, 175, 0), 3)
             else:
+    
                 cv2.putText(frame, "Attendanced", (x, y+h+60),
                             fontFace, 1, (72, 150, 32), 2)
 
             conn.execute(query)
             conn.commit()
             conn.close()
+            # index = easygui.msgbox("Thành Công", title="Result")
+            # print(str(now)+"----"+str(check) +
+            #           "----"+str(MSSV)+"----"+str(query))
         else:
             cv2.putText(frame, "Unknow", (x+10, y+h+30),
                         fontFace, 1, (0, 0, 255), 2)
+
+        #  start = time.time()
+
+        #  end = time.time()
+        # print("CNN Execution time: " + str(end-start))
+
+        # Vẽ một đường bao đỏ xung quanh các khuôn mặt được xác định bởi CNN
     frame = cv2.resize(frame, (900, 680))
     cv2.imshow('image', frame)
     if cv2.waitKey(1) == ord('q'):
